@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Maximiliano Rios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #1e293b; /* Azul oscuro casi negro */
+            --accent-color: #3b82f6; /* Azul brillante profesional */
+            --text-main: #334155;    /* Gris oscuro para lectura */
+            --text-light: #f8fafc;   /* Texto claro para fondo oscuro */
+            --bg-gray: #f1f5f9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e2e8f0; /* Fondo gris para la pantalla */
+            color: var(--text-main);
+            font-size: 14px; /* Tamaño letra ideal para A4 */
+        }
+
+        /* Contenedor Principal (Hoja A4) */
+        .page {
+            background: white;
+            width: 21cm; /* Ancho A4 */
+            min-height: 29.7cm;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 32% 68%; /* Proporción Columna Izq / Der */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        /* --- COLUMNA IZQUIERDA (SIDEBAR) --- */
+        .sidebar {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 30px 25px;
+            text-align: left;
+        }
+
+        .profile-img-placeholder {
+            /* Si quisieras poner foto, iría aquí. Si no, queda bien solo texto */
+            margin-bottom: 20px;
+        }
+
+        .sidebar h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            word-break: break-all;
+        }
+
+        .contact-item a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 8px;
+            margin: 0 5px 8px 0;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .edu-item {
+            margin-bottom: 15px;
+        }
+        .edu-degree { font-weight: bold; display: block; }
+        .edu-school { font-size: 0.9em; opacity: 0.8; }
+        .edu-date { font-size: 0.8em; font-style: italic; opacity: 0.6; }
+
+        /* --- COLUMNA DERECHA (MAIN) --- */
+        .main-content {
+            padding: 40px 35px;
+        }
+
+        .header-name h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8em;
+            margin: 0;
+            line-height: 1;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+        }
+
+        .header-name .role {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            color: var(--accent-color);
+            margin-top: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        .main-section {
+            margin-top: 35px;
+        }
+
+        .main-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-dark);
+            font-size: 1.3em;
+            text-transform: uppercase;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .summary-text {
+            line-height: 1.6;
+            color: #475569;
+            text-align: justify;
+        }
+
+        /* Experiencia */
+        .job-card {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .job-card::before {
+            /* Línea de tiempo visual */
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 5px;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .job-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .job-company {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .job-date {
+            font-size: 0.9em;
+            color: #64748b;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .job-details li {
+            margin-bottom: 6px;
+            color: #475569;
+        }
+
+        /* Botón Flotante */
+        .btn-download {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        /* --- RESPONSIVE Y PRINT --- */
+        @media screen and (max-width: 768px) {
+            .page {
+                width: 100%;
+                /* Usamos Flexbox para cambiar el orden fácilmente */
+                display: flex;
+                flex-direction: column; 
+                height: auto;
+                margin: 0;
+            }
+            
+            /* Hacemos que el contenido principal (Nombre) suba */
+            .main-content {
+                order: -1;
+                padding: 40px 20px 20px 20px;
+            }
+
+            /* La barra lateral baja */
+            .sidebar { 
+                padding: 30px 20px; 
+            }
+        }
+
+        @media print {
+            body { background: white; -webkit-print-color-adjust: exact; }
+            .page { 
+                margin: 0; 
+                width: 100%; 
+                box-shadow: none; 
+                min-height: 100vh;
+                display: grid; /* Forzamos Grid en impresión */
+                grid-template-columns: 32% 68% !important; 
+            }
+            .main-content { order: 0 !important; } /* Reseteamos orden para impresión */
+            .btn-download { display: none; }
+            .sidebar { -webkit-print-color-adjust: exact; print-color-adjust: exact; background-color: #1e293b !important; }
+            a { text-decoration: none; color: inherit; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="btn-download" onclick="window.print()">📥 Descargar PDF</button>
+
+    <div class="page">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2>Contacto</h2>
+                <div class="contact-item">📱 11 6018-5377</div>
+                <div class="contact-item">📧 ariasmanuel191@gmail.com</div>
+                <div class="contact-item">📍 Lomas de Zamora, BA</div>
+                <div class="contact-item">🔗 <a href="https://github.com/kukre2005">github.com/kukre2005</a></div>
+                <div class="contact-item">🔗 <a href="https://gitlab.com/users/Kukre2005/projects">GitLab Profile</a></div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Habilidades</h2>
+                <div style="margin-bottom:10px; font-weight:bold; color:var(--accent-color)">Frontend</div>
+                <span class="skill-tag">ReactJS</span>
+                <span class="skill-tag">JavaScript ES6</span>
+                <span class="skill-tag">HTML5 / CSS3</span>
+                <span class="skill-tag">Responsive</span>
+                
+                <div style="margin-bottom:10px; margin-top:10px; font-weight:bold; color:var(--accent-color)">Móvil</div>
+                <span class="skill-tag">Kotlin</span>
+                <span class="skill-tag">Android Studio</span>
+                
+                <div style="margin-bottom:10px; margin-top:10px; font-weight:bold; color:var(--accent-color)">Backend & Tools</div>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Git / GitHub</span>
+                <span class="skill-tag">Linux / Bash</span>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Educación</h2>
+                <div class="edu-item">
+                    <span class="edu-degree">Oracle Next Education</span>
+                    <span class="edu-school">Desarrollo Web & Java</span>
+                </div>
+                <div class="edu-item">
+                    <span class="edu-degree">Google Developer</span>
+                    <span class="edu-school">Formación Continua</span>
+                </div>
+                <div class="edu-item">
+                    <span class="edu-degree">Nivel Secundario</span>
+                    <span class="edu-school">CENS nº 492</span>
+                    <span class="edu-date">2025 - Presente</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Idiomas</h2>
+                <div class="edu-item">
+                    <span class="edu-degree">Español</span>
+                    <span class="edu-school">Nativo</span>
+                </div>
+                <div class="edu-item">
+                    <span class="edu-degree">Inglés</span>
+                    <span class="edu-school">Técnico (Lectura)</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header-name">
+                <h1>Maximiliano<br>Rios</h1>
+                <span class="role">Desarrollador Web & Móvil (Full Stack)</span>
+            </header>
+
+            <section class="main-section">
+                <h2>Perfil Profesional</h2>
+                <p class="summary-text">
+                    Desarrollador Full Stack con más de 6 años de experiencia en la creación de soluciones web escalables y aplicaciones móviles nativas. Especializado en el desarrollo de sistemas de gestión complejos, incluyendo paneles administrativos, portales corporativos y plataformas de reservas. Apasionado por la optimización de procesos mediante software, el uso de Linux como entorno de desarrollo y la implementación de bases de datos en tiempo real.
+                </p>
+            </section>
+
+            <section class="main-section">
+                <h2>Experiencia Laboral</h2>
+                
+                <div class="job-card">
+                    <div class="job-title">Desarrollador Full Stack</div>
+                    <div class="job-company">Freelance | Impalacabo & Proyectos Propios</div>
+                    <span class="job-date">2019 – Presente</span>
+                    <ul class="job-details">
+                        <li><strong>Sistema de Gestión Logística:</strong> Desarrollo de dashboard administrativo y app para empleados para el control de flotas y viajes.</li>
+                        <li><strong>Plataforma de Reservas (Booking):</strong> Diseño de aplicación web con back-office en ReactJS para gestión de disponibilidad en tiempo real.</li>
+                        <li>Integración de bases de datos <strong>Firebase</strong> y sistemas de autenticación segura.</li>
+                        <li>Optimización de interfaces de usuario (UI/UX) para clientes finales.</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-title">Desarrollador Android</div>
+                    <div class="job-company">Proyectos Independientes</div>
+                    <span class="job-date">Trayectoria Continua</span>
+                    <ul class="job-details">
+                        <li>Desarrollo de aplicaciones nativas utilizando <strong>Kotlin</strong> y Android Studio.</li>
+                        <li>Gestión avanzada del ciclo de vida de componentes Android (Activities, Fragments).</li>
+                        <li>Depuración y optimización de rendimiento en dispositivos físicos y emuladores.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
